@@ -21,3 +21,4 @@ hanoi_tower(recive, 'A', 'B', 'C')
 end = time.time()
 print("총 함수 실행 횟수:", count)
 print("총 실행 시간: %.5f 초" % (end - start))
+
