@@ -22,7 +22,7 @@ if __name__ == "__main__":
     map.delete(68)
     map.display("[삭제 68] : ")
     map.delete(18)
-    map.display("[삭제 18] : ")
+    map.display("[삭제 18] : ")     
     map.delete(35)
     map.display("[삭제 35] : ")
 
