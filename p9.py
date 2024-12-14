@@ -1,3 +1,10 @@
+def print_table(table, vertex):
+    print("\t" + "\t".join(vertex))
+    for i, row in enumerate(table):
+        row_str = [str(x) if x != INF else "INF" for x in row]
+        print(f"{vertex[i]}\t" + "\t".join(row_str))
+    print()
+
 INF = 9999
 
 def get_path(path, start, end):
@@ -7,7 +14,6 @@ def get_path(path, start, end):
         return []
     return get_path(path, start, path[start][end]) + [path[start][end]]
 
-# Floyd 알고리즘
 def shortest_path_floyd(vertex, adj):
     vsize = len(vertex)
     A = [list(row) for row in adj]
@@ -19,7 +25,7 @@ def shortest_path_floyd(vertex, adj):
                 if A[i][k] + A[k][j] < A[i][j]:
                     A[i][j] = A[i][k] + A[k][j]
                     path[i][j] = path[k][j]
-
+        print_table(A, vertex)
     return A, path
 
 if __name__ == "__main__":
@@ -36,7 +42,6 @@ if __name__ == "__main__":
     ]
 
     print("Floyd 알고리즘으로 최단 경로 구하기")
-    distances, path = shortest_path_floyd(vertex, weight)
 
     start_vertex = input("시작 정점 입력: ").strip().upper()
     end_vertex = input("종료 정점 입력: ").strip().upper()
@@ -44,6 +49,8 @@ if __name__ == "__main__":
     if start_vertex not in vertex or end_vertex not in vertex:
         print("유효하지 않은 정점입니다. 그래프에 존재하는 정점을 입력하세요.")
         exit()
+
+    distances, path = shortest_path_floyd(vertex, weight)
 
     start_idx = vertex.index(start_vertex)
     end_idx = vertex.index(end_vertex)
